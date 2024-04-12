@@ -1,0 +1,20 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": ["prettier", "plugin:wc/recommended", "plugin:lit/recommended"],
+  "plugins": ["@typescript-eslint", "html"],
+  "rules": {
+    "wc/guard-super-call": "warn",
+    "no-unused-vars": "off",
+    "no-implicit-globals": "warn",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "import/no-unresolved": "off",
+    "import/no-extraneious-dependencies": "off",
+    "import/extensions": [
+      "off",
+      "always",
+      {
+        "ignorePackages": true,
+      },
+    ],
+  },
+}

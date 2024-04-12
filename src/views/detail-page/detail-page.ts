@@ -1,0 +1,13 @@
+import { HTMLTemplateResult, LitElement, html } from 'lit';
+import { customElement } from 'lit/decorators.js';
+import { ViewMixin } from '../view.mixin';
+
+@customElement('detail-page')
+export class DetailPage extends ViewMixin(LitElement) {
+  tagName = 'detail-page';
+  featureIsEnabled = true;
+
+  render(): HTMLTemplateResult {
+    return html`${this.renderComponent()}`;
+  }
+}
