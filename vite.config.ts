@@ -49,6 +49,16 @@ export default defineConfig({
   },
   test: {
     coverage: {
+      exclude: [
+        '**/.history',
+        '**/dev-dist',
+        '**/node_modules',
+        '**/vite.config.*',
+        '**/vite-env.d.ts',
+        '**/.yarn',
+        '**/configuration',
+        '**/contexts'
+      ],
       enabled: true,
       thresholds: {
         functions: 85,
