@@ -3,6 +3,8 @@ import { css } from 'lit';
 export const ThemeSwitcherStyles = css`
   :host {
     height: fit-content;
+    justify-content: right;
+    display: flex;
   }
 
   .switch {

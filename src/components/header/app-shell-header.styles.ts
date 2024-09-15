@@ -1,21 +1,24 @@
 import { css } from 'lit';
 
 export const AppShellHeaderStyles = css`
+  .logo {
+    height: 2rem;
+  }
+
   nav {
     align-items: center;
     background-color: var(--nav-background-color);
     box-shadow: var(--primary-box-shadow);
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 6fr 2fr;
     gap: 1rem;
-    justify-content: space-between;
+    padding-inline: 1rem;
   }
 
   ul {
     display: flex;
     flex-direction: row;
     gap: 2rem;
-    justify-content: space-evenly;
     list-style: none;
   }
 
