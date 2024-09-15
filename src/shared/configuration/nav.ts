@@ -21,6 +21,16 @@ export const navigationRouting: NavItem[] = [
     tagName: 'detail-page',
     isMfe: false,
   },
+  {
+    name: 'Card Examples',
+    path: '/card-examples',
+    directory: 'card-examples',
+    component: 'card-examples',
+    filePath: '../../views/card-examples/card-examples.ts',
+    levelOfAccess: ['public'],
+    tagName: 'card-examples',
+    isMfe: false,
+  },
 ];
 
 export const sidePages: NavItem[] = [

@@ -47,9 +47,8 @@ export const routesBuilt = (
       tagName: child.tagName,
       userHasPermission: getAccessPermissions(navItem, accesses),
     })),
-    action: async () => {
-      await import(`../../views/${navItem.directory}/${navItem.component}.ts`);
-    },
+    action: async () =>
+      await import(`../../views/${navItem.directory}/${navItem.component}.ts`),
   }));
 
   if (includeWildcardRoute) {

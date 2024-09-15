@@ -1,10 +1,10 @@
 import { consume } from '@lit/context';
 import { HTMLTemplateResult, LitElement, PropertyValues, html } from 'lit';
+import { property, state } from 'lit/decorators.js';
 import { AccessesContext } from '../shared/contexts/accesses.context';
-import { property, query, state } from 'lit/decorators.js';
+import { MfeLoaderContext } from '../shared/contexts/mfe-loader.context';
 import { NavigationContext } from '../shared/contexts/navigation.context';
 import { NavItem } from '../shared/interfaces/navigation.interface';
-import { MfeLoaderContext } from '../shared/contexts/mfe-loader.context';
 import { MfeLoader } from '../shared/utilities/mfe-loader.utility';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
@@ -18,7 +18,7 @@ export declare class ViewMixinInterface {
   featureIsEnabled: boolean;
   isMfe: boolean;
   renderUnderConstruction(): HTMLTemplateResult;
-  renderMfe(): HTMLTemplateResult;
+  renderMfe(customTemplate?: HTMLTemplateResult): HTMLTemplateResult;
 }
 
 export const ViewMixin = <T extends Constructor<LitElement>>(superClass: T) => {
@@ -85,11 +85,20 @@ export const ViewMixin = <T extends Constructor<LitElement>>(superClass: T) => {
         : html`<under-construction></under-construction>`;
     }
 
-    renderMfe(): HTMLTemplateResult {
+    renderMfe(customTemplate?: HTMLTemplateResult): HTMLTemplateResult {
+      if (customTemplate) {
+        return html`${customTemplate}`;
+      }
+
       return html`${this.featureIsEnabled &&
-      this.componentData?.userHasPermission
+      this.componentData?.userHasPermission &&
+      this.isMfe
         ? html`<div id="mfe-container-${this.tagName}"></div>`
         : this.renderUnderConstruction()}`;
+    }
+
+    protected render(): HTMLTemplateResult {
+      return html`${this.renderMfe}`;
     }
   }
 

@@ -1,21 +1,22 @@
 import { provide } from '@lit/context';
+import { Route, Router } from '@vaadin/router';
 import { HTMLTemplateResult, LitElement, PropertyValueMap, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { NavigationContext } from './shared/contexts/navigation.context';
-import { NavItem } from './shared/interfaces/navigation.interface';
+import { AppShellStyles } from './app-shell.styles';
+import './components/header/app-shell-header';
+import { MFE_LOADER_CONFIG } from './shared/configuration/mfes';
 import { navigationRouting, sidePages } from './shared/configuration/nav';
 import { routesBuilt } from './shared/configuration/routes';
-import { AppRootUtilities } from './shared/utilities/app-root.utility';
 import { AccessesContext } from './shared/contexts/accesses.context';
-import { Route, Router } from '@vaadin/router';
-import './shared/internal-views/no-access/no-access';
-import './shared/internal-views/404-not-found/page-not-found';
-import './shared/internal-views/under-construction/under-construction';
-import './components/header/app-shell-header';
-import { AppShellStyles } from './app-shell.styles';
 import { MfeLoaderContext } from './shared/contexts/mfe-loader.context';
+import { NavigationContext } from './shared/contexts/navigation.context';
+import { NavItem } from './shared/interfaces/navigation.interface';
+import './shared/internal-views/404-not-found/page-not-found';
+import './shared/internal-views/no-access/no-access';
+import './shared/internal-views/under-construction/under-construction';
+import './components/card/generic-card';
+import { AppRootUtilities } from './shared/utilities/app-root.utility';
 import { MfeLoader } from './shared/utilities/mfe-loader.utility';
-import { MFE_LOADER_CONFIG } from './shared/configuration/mfes';
 
 /**
  * An example element.
@@ -53,7 +54,7 @@ export class AppShell extends LitElement {
 
   async connectedCallback(): Promise<void> {
     super.connectedCallback();
-    this.accesses = ['public', 'private'];
+    this.accesses = ['public'];
     this.navRoutes = this.buildNavBarRoutes(navigationRouting);
   }
 
