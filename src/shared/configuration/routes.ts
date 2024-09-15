@@ -1,10 +1,20 @@
 import { Route } from '@vaadin/router';
 import { IconType, NavItem } from '../interfaces/navigation.interface';
+import { MfeItem } from '../utilities/mfe-loader.utility';
+import { MFE_LOADER_CONFIG } from './mfes';
 
 export const getAccessPermissions = (
   item: NavItem,
   accesses: string[],
 ): boolean => item.levelOfAccess.some(access => accesses.includes(access));
+
+export const getMfeComponent = (internalTagName: string) => {
+  const mfe = MFE_LOADER_CONFIG.filter(
+    (mfe: MfeItem) => mfe.associatedInternalTag === internalTagName,
+  );
+
+  return mfe.length > 0 ? mfe[0] : {};
+};
 
 export const routesBuilt = (
   navItems: NavItem[],
@@ -24,6 +34,7 @@ export const routesBuilt = (
     filePath: navItem.filePath,
     directory: navItem.directory,
     tagName: navItem.tagName,
+    mfeComponent: getMfeComponent(navItem.tagName),
     userHasPermission: getAccessPermissions(navItem, accesses),
     children: navItem.children?.map((child: NavItem) => ({
       name: child.name,

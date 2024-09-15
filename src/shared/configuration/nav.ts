@@ -9,6 +9,7 @@ export const navigationRouting: NavItem[] = [
     filePath: '../../views/home-page/home-page.ts',
     levelOfAccess: ['public'],
     tagName: 'home-page',
+    isMfe: true,
   },
   {
     name: 'Example Detail Page',
@@ -18,6 +19,7 @@ export const navigationRouting: NavItem[] = [
     filePath: '../../views/detail-page/detail-page.ts',
     levelOfAccess: ['private'],
     tagName: 'detail-page',
+    isMfe: false,
   },
 ];
 
@@ -30,5 +32,6 @@ export const sidePages: NavItem[] = [
     filePath: '../../views/detail-page/detail-page.ts',
     levelOfAccess: ['private'],
     tagName: 'detail-page',
+    isMfe: false,
   },
 ];

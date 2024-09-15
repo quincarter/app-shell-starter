@@ -11,6 +11,11 @@ import { Route, Router } from '@vaadin/router';
 import './shared/internal-views/no-access/no-access';
 import './shared/internal-views/404-not-found/page-not-found';
 import './shared/internal-views/under-construction/under-construction';
+import './components/header/app-shell-header';
+import { AppShellStyles } from './app-shell.styles';
+import { MfeLoaderContext } from './shared/contexts/mfe-loader.context';
+import { MfeLoader } from './shared/utilities/mfe-loader.utility';
+import { MFE_LOADER_CONFIG } from './shared/configuration/mfes';
 
 /**
  * An example element.
@@ -21,12 +26,16 @@ import './shared/internal-views/under-construction/under-construction';
 @customElement('app-shell')
 export class AppShell extends LitElement {
   @provide({ context: NavigationContext })
-  @property({ type: Object })
+  @property({ type: Array })
   routing: NavItem[] = [];
 
   @provide({ context: AccessesContext })
   @property({ type: Array })
   accesses: string[] = [];
+
+  @provide({ context: MfeLoaderContext })
+  @state()
+  mfeLoader = new MfeLoader(MFE_LOADER_CONFIG);
 
   @state()
   _router: Router | undefined;
@@ -39,6 +48,8 @@ export class AppShell extends LitElement {
 
   @state()
   notAllowedRouteList: NavItem[] = [];
+
+  static styles = [AppShellStyles];
 
   async connectedCallback(): Promise<void> {
     super.connectedCallback();
@@ -87,27 +98,9 @@ export class AppShell extends LitElement {
 
   render(): HTMLTemplateResult {
     return html`
-      <nav>
-        <h1>Nav Routes</h1>
-        <ul>
-          ${this.navRoutes.map(
-            item =>
-              html`<li>
-                <a href="${item.path}">${item.name}</a>
-              </li>`,
-          )}
-        </ul>
-        <h2>Detail Routes</h2>
-        <ul>
-          ${this.nonNavRoutes.map(
-            item =>
-              html`<li>
-                <a href="${item.path}">${item.name}</a>
-              </li>`,
-          )}
-        </ul>
-      </nav>
-      <div id="outlet"></div>
+      <app-shell-header .routes="${this.navRoutes}" enable-theme-switcher>
+        <div id="outlet"></div>
+      </app-shell-header>
     `;
   }
 }

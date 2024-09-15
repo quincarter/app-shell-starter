@@ -8,6 +8,6 @@ export class DetailPage extends ViewMixin(LitElement) {
   featureIsEnabled = true;
 
   render(): HTMLTemplateResult {
-    return html`${this.renderComponent()}`;
+    return html`<p>The detail page works now</p>`;
   }
 }

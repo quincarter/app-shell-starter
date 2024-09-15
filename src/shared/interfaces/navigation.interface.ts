@@ -1,3 +1,5 @@
+import { MfeItem } from '../utilities/mfe-loader.utility';
+
 export interface NavItem {
   name: string;
   path: string;
@@ -6,10 +8,12 @@ export interface NavItem {
   levelOfAccess: string[];
   action?: () => {};
   children?: NavItem[];
-  component?: string;
-  tagName?: string;
+  component: string;
+  tagName: string;
   icon?: IconType;
   userHasPermission?: boolean;
+  mfeComponent?: MfeItem;
+  isMfe: boolean;
 }
 
 export declare type IconType = 'test';
