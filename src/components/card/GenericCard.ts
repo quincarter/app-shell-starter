@@ -11,6 +11,40 @@ import { styleMap } from 'lit/directives/style-map.js';
 
 export type CardVariant = 'default' | 'no-outline-column' | 'no-outline-row';
 
+/**
+ * # Generic Card Component
+ * This is a generic card component with multiple variants available for use to give a different look/feel on the page.
+ * ## Usage
+ *
+ * ```typescript
+ * import { GenericCard } from 'path/to/GenericCard.ts';
+ *
+ * // doing class extends prevents the GenericCard constructor from failing to initialize in the current scope
+ * customElements.define('your-tag-name', class extends GenericCard {});
+ * ```
+ *
+ * ## Basic markup
+ *
+ * ```html
+ * <your-tag-name>
+ *   <div slot="card-title">
+ *     This is a card title
+ *   </div>
+ *   <div>
+ *     This is a default slot
+ *   </div>
+ *   <div slot="card-footer">
+ *     This is in the footer
+ *   </div>
+ * </your-tag-name>
+ * ```
+ *
+ * @element generic-card
+ *
+ * @slot card-title - This is for the title section of the card.
+ * @slot - This is the card body and the default, unnamed slot.
+ * @slot card-footer - This is for the footer section of the card.
+ */
 export class GenericCard extends LitElement {
   static styles: CSSResultOrNative[] = [GenericCardStyles];
 
