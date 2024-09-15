@@ -2,6 +2,10 @@ import { html, HTMLTemplateResult, LitElement, PropertyValues } from 'lit';
 import { query } from 'lit/decorators.js';
 import { ThemeSwitcherStyles } from './theme-switcher.styles';
 
+/**
+ * This is a toggle switch component that should be easily addable to any project, but specifically sets different variables at the document level to help determine what theme is set. This also sets localStorage values for the current theme to persist
+ * @element theme-switcher
+ */
 export class ThemeSwitcher extends LitElement {
   @query('#theme-switch input[type="checkbox"]')
   switchBox: HTMLInputElement | undefined;
