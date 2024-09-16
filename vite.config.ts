@@ -7,7 +7,7 @@ import compression from 'vite-plugin-compression';
 dns.setDefaultResultOrder('verbatim');
 
 export default defineConfig({
-  base: './',
+  base: '/app-shell-starter/',
   plugins: [
     compression({
       // add extensions here --- e.g.:
@@ -57,7 +57,7 @@ export default defineConfig({
         '**/vite-env.d.ts',
         '**/.yarn',
         '**/configuration',
-        '**/contexts'
+        '**/contexts',
       ],
       enabled: true,
       thresholds: {
