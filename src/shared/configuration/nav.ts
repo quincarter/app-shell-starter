@@ -41,6 +41,16 @@ export const navigationRouting: NavItem[] = [
     tagName: 'chart-examples',
     isMfe: false,
   },
+  {
+    name: 'Vite MFE',
+    path: 'vite-mfe',
+    directory: 'vite-mfe',
+    component: 'vite-mfe',
+    filePath: '../../views/vite-mfe/vite-mfe.ts',
+    levelOfAccess: ['public'],
+    tagName: 'vite-mfe',
+    isMfe: true,
+  },
 ];
 
 export const sidePages: NavItem[] = [
