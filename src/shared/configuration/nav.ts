@@ -31,6 +31,16 @@ export const navigationRouting: NavItem[] = [
     tagName: 'card-examples',
     isMfe: false,
   },
+  {
+    name: 'Charts',
+    path: '/chart-examples',
+    directory: 'chart-examples',
+    component: 'chart-examples',
+    filePath: '../../views/chart-examples/chart-examples.ts',
+    levelOfAccess: ['public'],
+    tagName: 'chart-examples',
+    isMfe: false,
+  },
 ];
 
 export const sidePages: NavItem[] = [

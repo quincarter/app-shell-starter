@@ -1724,6 +1724,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@kurkle/color@npm:^0.3.0, @kurkle/color@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "@kurkle/color@npm:0.3.2"
+  checksum: 10c0/a9e8e3e35dcd59dec4dd4f0105919c05e24823a96347bcf152965c29e48d6290b66d5fb96c071875db752e10930724c48ce6d338fefbd65e0ce5082d5c78970e
+  languageName: node
+  linkType: hard
+
 "@lit-labs/ssr-dom-shim@npm:^1.2.0":
   version: 1.2.1
   resolution: "@lit-labs/ssr-dom-shim@npm:1.2.1"
@@ -1924,11 +1931,13 @@ __metadata:
   resolution: "@quincarter/app-shell-starter@workspace:."
   dependencies:
     "@custom-elements-manifest/analyzer": "npm:^0.10.3"
+    "@kurkle/color": "npm:^0.3.2"
     "@lit/context": "npm:^1.1.2"
     "@lit/task": "npm:^1.0.1"
     "@open-wc/eslint-config": "npm:^12.0.3"
     "@open-wc/testing": "npm:^4.0.0"
     "@types/gh-pages": "npm:^6.1.0"
+    "@types/luxon": "npm:^3"
     "@types/mocha": "npm:^10.0.8"
     "@types/sinon": "npm:^17.0.3"
     "@types/uglify-js": "npm:^3.17.5"
@@ -1938,6 +1947,8 @@ __metadata:
     "@vitejs/plugin-basic-ssl": "npm:^1.1.0"
     "@vitest/coverage-v8": "npm:^2.1.1"
     "@web/test-runner": "npm:^0.19.0"
+    chart.js: "npm:^4.4.4"
+    chartjs-adapter-luxon: "npm:^1.3.1"
     concurrently: "npm:^9.0.1"
     eslint: "npm:^9.10.0"
     eslint-config-prettier: "npm:^9.1.0"
@@ -1951,6 +1962,7 @@ __metadata:
     husky: "npm:^9.1.6"
     lint-staged: "npm:^15.2.10"
     lit: "npm:^3.2.0"
+    luxon: "npm:^3.5.0"
     prettier: "npm:^3.3.3"
     rimraf: "npm:^6.0.1"
     sinon: "npm:^19.0.2"
@@ -2471,6 +2483,13 @@ __metadata:
     "@types/koa-compose": "npm:*"
     "@types/node": "npm:*"
   checksum: 10c0/3fd591e25ecffc32ffa7cb152d2c5caeccefe5a72cb09d187102d8f41101bdaeeb802a07a6672eac58f805fa59892e79c1cc203ca7b27b0de75d7eac508c2b47
+  languageName: node
+  linkType: hard
+
+"@types/luxon@npm:^3":
+  version: 3.4.2
+  resolution: "@types/luxon@npm:3.4.2"
+  checksum: 10c0/d835467de3daf7e17ba78b50bb5a14efd94272439ca067990d71332a54b311544459c69623eddd243b511b28d70194c9591a9ee8cf9c038962c965f991affd7e
   languageName: node
   linkType: hard
 
@@ -3754,6 +3773,25 @@ __metadata:
   version: 5.3.0
   resolution: "chalk@npm:5.3.0"
   checksum: 10c0/8297d436b2c0f95801103ff2ef67268d362021b8210daf8ddbe349695333eb3610a71122172ff3b0272f1ef2cf7cc2c41fdaa4715f52e49ffe04c56340feed09
+  languageName: node
+  linkType: hard
+
+"chart.js@npm:^4.4.4":
+  version: 4.4.4
+  resolution: "chart.js@npm:4.4.4"
+  dependencies:
+    "@kurkle/color": "npm:^0.3.0"
+  checksum: 10c0/9fa3206403a6103916f7762c2665d322c42b0cc07fba91526b1d033ddb887c1ba74b3ebc0bd0748a9e55abd1017f25fdb2292cdd6579d8c2d3bcb1c58f71281c
+  languageName: node
+  linkType: hard
+
+"chartjs-adapter-luxon@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "chartjs-adapter-luxon@npm:1.3.1"
+  peerDependencies:
+    chart.js: ">=3.0.0"
+    luxon: ">=1.0.0"
+  checksum: 10c0/73f8767629aadbc5d32825c4d27304136138b3ee3b2e8bdbe1cb8cf9401d14c3ec96be909ac784d7c4d4171f3309d7687308f4a787919e7b0b86b4ab0a21468e
   languageName: node
   linkType: hard
 
@@ -7040,6 +7078,13 @@ __metadata:
   version: 8.0.5
   resolution: "lru-cache@npm:8.0.5"
   checksum: 10c0/cd95a9c38497611c5a6453de39a881f6eb5865851a2a01b5f14104ff3fee515362a7b1e7de28606028f423802910ba05bdb8ae1aa7b0d54eae70c92f0cec10b2
+  languageName: node
+  linkType: hard
+
+"luxon@npm:^3.5.0":
+  version: 3.5.0
+  resolution: "luxon@npm:3.5.0"
+  checksum: 10c0/335789bba95077db831ef99894edadeb23023b3eb2137a1b56acd0d290082b691cf793143d69e30bc069ec95f0b49f36419f48e951c68014f19ffe12045e3494
   languageName: node
   linkType: hard
 

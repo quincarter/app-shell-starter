@@ -15,6 +15,7 @@ import './shared/internal-views/404-not-found/page-not-found';
 import './shared/internal-views/no-access/no-access';
 import './shared/internal-views/under-construction/under-construction';
 import './components/card/generic-card';
+import './components/chart-js/chart-js';
 import { AppRootUtilities } from './shared/utilities/app-root.utility';
 import { MfeLoader } from './shared/utilities/mfe-loader.utility';
 
