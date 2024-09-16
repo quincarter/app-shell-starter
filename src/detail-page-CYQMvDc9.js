@@ -1,2 +1,0 @@
-import{k as f,t as l,h as n}from"./index-BFtS5o78.js";import{V as u}from"./view.mixin-CcZP0jVY.js";var g=Object.defineProperty,h=Object.getOwnPropertyDescriptor,m=(p,r,s,t)=>{for(var e=t>1?void 0:t?h(r,s):r,a=p.length-1,i;a>=0;a--)(i=p[a])&&(e=(t?i(r,s,e):i(e))||e);return t&&e&&g(r,s,e),e};let o=class extends u(n){constructor(){super(...arguments),this.tagName="detail-page",this.featureIsEnabled=!0}render(){return f`isMfe = ${this.isMfe}
-      <p>The detail page works now</p>`}};o=m([l("detail-page")],o);export{o as DetailPage};
