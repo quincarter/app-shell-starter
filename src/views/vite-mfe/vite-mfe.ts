@@ -3,7 +3,7 @@ import { customElement } from 'lit/decorators.js';
 import { ViewMixin } from '../view.mixin';
 
 @customElement('vite-mfe')
-export class HomePage extends ViewMixin(LitElement) {
+export class ViteMfe extends ViewMixin(LitElement) {
   tagName = 'my-element';
   featureIsEnabled = true;
   isMfe = true;
