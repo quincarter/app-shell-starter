@@ -1,6 +1,16 @@
 import { css, CSSResultOrNative } from 'lit';
 
 export const GenericCardStyles: CSSResultOrNative = css`
+  a {
+    text-decoration: none;
+    color: var(--primary-text-color);
+  }
+
+  a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
   /* Wrapper to replace the :host element */
   .card-wrapper.default {
     display: grid;
@@ -53,11 +63,11 @@ export const GenericCardStyles: CSSResultOrNative = css`
   }
 
   /* Card Class Options */
-  .card.interactive {
+  .card-wrapper.interactive {
     cursor: pointer;
   }
 
-  .card.disabled {
+  .card-wrapper.disabled {
     cursor: not-allowed;
     background-color: var(--disabled-card-background-color);
     color: var(--disabled-card-text-color);

@@ -4,10 +4,11 @@ import {
   HTMLTemplateResult,
   LitElement,
   nothing,
+  SVGTemplateResult,
 } from 'lit';
-import { GenericCardStyles } from './generic-card.styles';
 import { property } from 'lit/decorators.js';
 import { styleMap } from 'lit/directives/style-map.js';
+import { GenericCardStyles } from './generic-card.styles';
 
 export type CardVariant = 'default' | 'no-outline-column' | 'no-outline-row';
 
@@ -44,6 +45,8 @@ export type CardVariant = 'default' | 'no-outline-column' | 'no-outline-row';
  * @slot card-title - This is for the title section of the card.
  * @slot - This is the card body and the default, unnamed slot.
  * @slot card-footer - This is for the footer section of the card.
+ *
+ * @fires card-clicked - This event fires if 'card-interactive' is set on the element
  */
 export class GenericCard extends LitElement {
   static styles: CSSResultOrNative[] = [GenericCardStyles];
@@ -57,6 +60,9 @@ export class GenericCard extends LitElement {
   @property({ type: String, attribute: 'card-variant' })
   variant: CardVariant = 'default';
 
+  @property({ type: Array, attribute: 'lit-svg' })
+  litSvg: SVGTemplateResult | undefined;
+
   /**
    * Sets the path for the image to be displayed
    * @attr img-src
@@ -65,6 +71,15 @@ export class GenericCard extends LitElement {
    */
   @property({ type: String, attribute: 'img-src' })
   imgSrc = '';
+
+  /**
+   * Sets the ID for the card internally
+   * @attr card-id
+   * @type {String}
+   * @default ''
+   */
+  @property({ type: String, attribute: 'card-id' })
+  cardId = '';
 
   /**
    * Sets the alt text for the <img> tag for accessibility reasons.
@@ -122,16 +137,46 @@ export class GenericCard extends LitElement {
 
   /**
    * If attached to the element, this makes the card appear to be clickable and allows navigation to occur. This will show as a <a href=""></a> under the hood and a path will need to be provided in the element implementation.
-   * @attr card-interactive
+   * @attr card-navigation
    * @type {Boolean}
    * @default false
    */
-  @property({ type: Boolean, attribute: 'card-interactive' })
+  @property({ type: Boolean, attribute: 'card-navigation' })
   navigation = false;
 
-  render(): HTMLTemplateResult {
-    return html` <div class="card-wrapper ${this.variant}">
-      ${this.imgSrc
+  /**
+   * If attached to the element, this will assign the href to the card itself ready for navigation
+   * @attr card-navigation-href
+   * @type {String}
+   * @default false
+   */
+  @property({ type: String, attribute: 'card-navigation-href' })
+  navigationHref = '';
+
+  @property({ type: Object, attribute: 'card-click-callback' })
+  cardClickEvent: (e: any) => void = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    const clickEvent = new CustomEvent('card-clicked', {
+      bubbles: true,
+      composed: true,
+      detail: { id: e.currentTarget.id, data: 'this card was clicked' },
+    });
+
+    this.shadowRoot?.dispatchEvent(clickEvent);
+  };
+
+  renderCard(): HTMLTemplateResult {
+    return html`<div
+      @click="${this.interactive && !this.disabled
+        ? this.cardClickEvent
+        : () => {}}"
+      id="${this.cardId ? this.cardId : `card-${this.variant}`}"
+      class="card-wrapper ${this.variant} ${this.disabled
+        ? 'disabled'
+        : ''} ${this.interactive ? 'interactive' : ''}"
+    >
+      ${this.imgSrc && !this.litSvg
         ? html`<img
             class="${this.variant} ${this.avatar ? 'avatar' : ''}"
             src="${this.imgSrc}"
@@ -142,11 +187,18 @@ export class GenericCard extends LitElement {
             })}"
           />`
         : nothing}
+      ${this.litSvg ? html`${this.litSvg}` : nothing}
       <div class="card ${this.disabled ? 'disabled' : ''}">
         <slot name="card-title"></slot>
         <slot></slot>
         <slot name="card-footer"></slot>
       </div>
     </div>`;
+  }
+
+  render(): HTMLTemplateResult {
+    return html`${this.navigation && this.navigationHref
+      ? html`<a href="${this.navigationHref}">${this.renderCard()}</a>`
+      : html`${this.renderCard()}`}`;
   }
 }
