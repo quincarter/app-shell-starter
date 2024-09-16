@@ -3,7 +3,7 @@ import { NavItem } from '../interfaces/navigation.interface';
 export const navigationRouting: NavItem[] = [
   {
     name: 'Home',
-    path: '/home',
+    path: 'home',
     directory: 'home-page',
     component: 'home-page',
     filePath: '../../views/home-page/home-page.ts',
@@ -13,7 +13,7 @@ export const navigationRouting: NavItem[] = [
   },
   {
     name: 'Example Detail Page',
-    path: '/details123',
+    path: 'details123',
     directory: 'detail-page',
     component: 'detail-page',
     filePath: '../../views/detail-page/detail-page.ts',
@@ -23,7 +23,7 @@ export const navigationRouting: NavItem[] = [
   },
   {
     name: 'Card Examples',
-    path: '/card-examples',
+    path: 'card-examples',
     directory: 'card-examples',
     component: 'card-examples',
     filePath: '../../views/card-examples/card-examples.ts',
@@ -33,7 +33,7 @@ export const navigationRouting: NavItem[] = [
   },
   {
     name: 'Charts',
-    path: '/chart-examples',
+    path: 'chart-examples',
     directory: 'chart-examples',
     component: 'chart-examples',
     filePath: '../../views/chart-examples/chart-examples.ts',
@@ -46,7 +46,7 @@ export const navigationRouting: NavItem[] = [
 export const sidePages: NavItem[] = [
   {
     name: 'Detail',
-    path: '/detail(.*)',
+    path: 'detail(.*)',
     directory: 'detail-page',
     component: 'detail-page',
     filePath: '../../views/detail-page/detail-page.ts',
