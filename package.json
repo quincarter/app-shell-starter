@@ -6,7 +6,8 @@
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "yarn build && vite preview",
-    "test": "vitest run --coverage"
+    "test": "vitest run --coverage",
+    "prepare": "husky"
   },
   "dependencies": {
     "@kurkle/color": "^0.3.2",
