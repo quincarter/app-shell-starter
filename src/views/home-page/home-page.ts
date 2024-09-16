@@ -9,6 +9,6 @@ export class HomePage extends ViewMixin(LitElement) {
   isMfe = true;
 
   render(): HTMLTemplateResult {
-    return html`${this.renderMfe()}`;
+    return html`isMfe = ${this.isMfe}${this.renderMfe()}`;
   }
 }

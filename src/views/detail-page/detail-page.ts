@@ -8,6 +8,7 @@ export class DetailPage extends ViewMixin(LitElement) {
   featureIsEnabled = true;
 
   render(): HTMLTemplateResult {
-    return html`<p>The detail page works now</p>`;
+    return html`isMfe = ${this.isMfe}
+      <p>The detail page works now</p>`;
   }
 }

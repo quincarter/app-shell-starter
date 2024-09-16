@@ -20,7 +20,8 @@ export class ChartExamples extends ViewMixin(LitElement) {
 
   render(): HTMLTemplateResult {
     return this.renderMfe(
-      html` <h2>Basic Bar chart</h2>
+      html` isMfe = ${this.isMfe}
+        <h2>Basic Bar chart</h2>
         <base-chart chart-type="bar"></base-chart>
         <h2>Pie and Doughnut</h2>
         <div class="pie-container">
