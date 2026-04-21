@@ -1,9 +1,12 @@
 import { provide } from '@lit/context';
-import { Route, Router } from '@vaadin/router';
-import { HTMLTemplateResult, LitElement, PropertyValueMap, html } from 'lit';
+import { Router } from '@lit-labs/router';
+import { HTMLTemplateResult, LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { html as staticHtml, unsafeStatic } from 'lit/static-html.js';
+import 'urlpattern-polyfill';
 import { AppShellStyles } from './app-shell.styles';
 import './components/header/app-shell-header';
+import { withBase } from './shared/configuration/base-path';
 import { MFE_LOADER_CONFIG } from './shared/configuration/mfes';
 import { navigationRouting, sidePages } from './shared/configuration/nav';
 import { routesBuilt } from './shared/configuration/routes';
@@ -40,68 +43,73 @@ export class AppShell extends LitElement {
   mfeLoader = new MfeLoader(MFE_LOADER_CONFIG);
 
   @state()
-  _router: Router | undefined;
-
-  @state()
-  nonNavRoutes: NavItem[] = [] as NavItem[];
-
-  @state()
   navRoutes: NavItem[] = [] as NavItem[];
 
   @state()
   notAllowedRouteList: NavItem[] = [];
+
+  private _router = new Router(this, []);
 
   static styles = [AppShellStyles];
 
   async connectedCallback(): Promise<void> {
     super.connectedCallback();
     this.accesses = ['public'];
-    this.navRoutes = this.buildNavBarRoutes(navigationRouting);
+    this.navRoutes = this._buildNavBarRoutes(navigationRouting);
+    this._setupRoutes();
   }
 
-  buildNavBarRoutes(
-    navigationRouting: NavItem[],
-    includeWildcardRoute = false,
-  ): NavItem[] {
-    const navi = routesBuilt(
-      navigationRouting,
-      this.accesses,
-      includeWildcardRoute,
-    ) as NavItem[];
+  private _buildNavBarRoutes(navItems: NavItem[]): NavItem[] {
+    const navi = routesBuilt(navItems, this.accesses);
 
-    const { notAllowed, navItems } = AppRootUtilities.getNotAllowedRoutes(
-      navi,
-      this.notAllowedRouteList,
-    );
+    const { notAllowed, navItems: filtered } =
+      AppRootUtilities.getNotAllowedRoutes(navi, this.notAllowedRouteList);
 
     this.notAllowedRouteList = notAllowed;
-    return navItems;
+    return filtered;
   }
 
-  protected firstUpdated(
-    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>,
-  ): void {
-    super.firstUpdated(_changedProperties);
-    const includeWildcardRoute = true;
-
-    const detailRoutes: NavItem[] = this.buildNavBarRoutes([...sidePages]);
-
-    const outlet = this.shadowRoot?.getElementById('outlet');
+  private _setupRoutes(): void {
+    const detailRoutes = this._buildNavBarRoutes([...sidePages]);
 
     this.routing = routesBuilt(
       [...this.navRoutes, ...this.notAllowedRouteList, ...detailRoutes],
       this.accesses,
-      includeWildcardRoute,
-    ) as NavItem[];
+    );
 
-    this._router = new Router(outlet);
-    this._router.setRoutes(this.routing as Route[]);
+    const routeConfigs = this.routing.map(navItem => ({
+      path: withBase(navItem.path),
+      enter: async () => {
+        await import(
+          `./views/${navItem.directory}/${navItem.component}.ts`
+        );
+        return true;
+      },
+      render: () => {
+        const tag = unsafeStatic(navItem.tagName);
+        return staticHtml`<${tag}></${tag}>`;
+      },
+    }));
+
+    const firstPath = this.navRoutes[0]?.path || '/home';
+
+    this._router.routes = [
+      {
+        path: withBase('/'),
+        enter: async () => {
+          await this._router.goto(withBase(firstPath));
+          return false;
+        },
+        render: () => html``,
+      },
+      ...routeConfigs,
+    ];
   }
 
   render(): HTMLTemplateResult {
     return html`
       <app-shell-header .routes="${this.navRoutes}" enable-theme-switcher>
-        <div id="outlet"></div>
+        <main>${this._router.outlet()}</main>
       </app-shell-header>
     `;
   }
