@@ -1,7 +1,7 @@
 import { consume } from "@lit/context";
 import {
-	html,
 	type HTMLTemplateResult,
+	html,
 	type LitElement,
 	type PropertyValues,
 } from "lit";
@@ -10,9 +10,7 @@ import { AccessesContext } from "../shared/contexts/accesses.context";
 import { MfeLoaderContext } from "../shared/contexts/mfe-loader.context";
 import { NavigationContext } from "../shared/contexts/navigation.context";
 import type { NavItem } from "../shared/interfaces/navigation.interface";
-import type {
-	MfeLoader
-} from "../shared/utilities/mfe-loader.utility";
+import type { MfeLoader } from "../shared/utilities/mfe-loader.utility";
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 

@@ -1,4 +1,9 @@
-import { Chart, type ChartItem, type ChartType } from "chart.js/auto";
+import {
+	Chart,
+	type ChartConfiguration,
+	type ChartItem,
+	type ChartType,
+} from "chart.js/auto";
 import {
 	type HTMLTemplateResult,
 	html,
@@ -47,7 +52,7 @@ export class ChartJsComponent extends LitElement {
 	 * @default undefined
 	 */
 	@property({ type: Object, attribute: "chart-config" })
-	config: any;
+	config: ChartConfiguration | undefined;
 
 	@state()
 	chart: Chart | undefined;
@@ -76,7 +81,7 @@ export class ChartJsComponent extends LitElement {
 			}
 		}
 
-		this.chart = new Chart(ctx, { ...data });
+		this.chart = new Chart(ctx, { ...data } as ChartConfiguration);
 	}
 
 	render(): HTMLTemplateResult {

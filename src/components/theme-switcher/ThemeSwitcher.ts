@@ -19,13 +19,14 @@ export class ThemeSwitcher extends LitElement {
 
 	protected firstUpdated(_changedProperties: PropertyValues): void {
 		super.firstUpdated(_changedProperties);
-		if (document.documentElement.getAttribute("data-theme") == "dark") {
+		if (document.documentElement.getAttribute("data-theme") === "dark") {
 			this.switchBox?.setAttribute("checked", "");
 		}
 	}
 
-	switchTheme(e: any) {
-		if (e.target.checked) {
+	switchTheme(e: Event) {
+		const target = e.target as HTMLInputElement;
+		if (target.checked) {
 			localStorage.setItem("theme", "dark");
 			document.documentElement.setAttribute("data-theme", "dark");
 			this.switchBox?.setAttribute("checked", "");

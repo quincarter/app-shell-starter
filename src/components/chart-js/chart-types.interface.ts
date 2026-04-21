@@ -2,6 +2,7 @@ import type {
 	BarControllerChartOptions,
 	BarControllerDatasetOptions,
 	CartesianParsedData,
+	ChartConfiguration,
 	ChartTypeRegistry,
 	DoughnutControllerChartOptions,
 	DoughnutControllerDatasetOptions,
@@ -61,17 +62,17 @@ const barData = {
 	],
 };
 
-export const SAMPLE_PIE_DATA: any = {
+export const SAMPLE_PIE_DATA: ChartConfiguration = {
 	type: "pie",
 	data: { ...pieData },
 };
 
-export const SAMPLE_DOUGHNUT_DATA: any = {
+export const SAMPLE_DOUGHNUT_DATA: ChartConfiguration = {
 	type: "doughnut",
 	data: { ...pieData },
 };
 
-export const SAMPLE_BAR_DATA: any = {
+export const SAMPLE_BAR_DATA: ChartConfiguration = {
 	type: "bar",
 	data: { ...barData },
 	options: {

@@ -154,13 +154,16 @@ export class GenericCard extends LitElement {
 	navigationHref = "";
 
 	@property({ type: Object, attribute: "card-click-callback" })
-	cardClickEvent: (e: any) => void = (e) => {
+	cardClickEvent: (e: Event) => void = (e) => {
 		e.preventDefault();
 		e.stopPropagation();
 		const clickEvent = new CustomEvent("card-clicked", {
 			bubbles: true,
 			composed: true,
-			detail: { id: e.currentTarget.id, data: "this card was clicked" },
+			detail: {
+				id: (e.currentTarget as HTMLElement).id,
+				data: "this card was clicked",
+			},
 		});
 
 		this.shadowRoot?.dispatchEvent(clickEvent);

@@ -85,7 +85,7 @@ export class CardExamples extends ViewMixin(LitElement) {
 		);
 	}
 
-	listenForClicks(e: CustomEvent<any>): void {
+	listenForClicks(e: CustomEvent<{ id: string; data: string }>): void {
 		console.log("item clicked", e.detail);
 	}
 }

@@ -8,7 +8,7 @@ import { AppShellHeaderStyles } from "./app-shell-header.styles";
 
 export class AppShellHeader extends LitElement {
 	@property({ attribute: "routes", type: Array })
-	routes: NavItem[] = [];
+	routes: NavItem[] = [] as NavItem[];
 
 	@property({ type: Boolean, attribute: "enable-theme-switcher" })
 	enableThemeSwitcher = false;

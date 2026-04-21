@@ -25,20 +25,19 @@ export function rand(min?: number, max?: number) {
 	return min + (_seed / 233280) * (max - min);
 }
 
-export function numbers(config: any) {
-	var cfg = config || {};
-	var min = valueOrDefault(cfg.min, 0);
-	var max = valueOrDefault(cfg.max, 100);
-	var from = valueOrDefault(cfg.from, []);
-	var count = valueOrDefault(cfg.count, 8);
-	var decimals = valueOrDefault(cfg.decimals, 8);
-	var continuity = valueOrDefault(cfg.continuity, 1);
-	var dfactor = 10 ** decimals || 0;
-	var data = [];
-	var i, value;
+export function numbers(config: Record<string, unknown>) {
+	const cfg = config || {};
+	const min = valueOrDefault(cfg.min as number, 0);
+	const max = valueOrDefault(cfg.max as number, 100);
+	const from = valueOrDefault(cfg.from as number[], []);
+	const count = valueOrDefault(cfg.count as number, 8);
+	const decimals = valueOrDefault(cfg.decimals as number, 8);
+	const continuity = valueOrDefault(cfg.continuity as number, 1);
+	const dfactor = 10 ** decimals || 0;
+	const data = [];
 
-	for (i = 0; i < count; ++i) {
-		value = (from[i] || 0) + rand(min, max);
+	for (let i = 0; i < count; ++i) {
+		const value = (from[i] || 0) + rand(min, max);
 		if (rand() <= continuity) {
 			data.push(Math.round(dfactor * value) / dfactor);
 		} else {
@@ -49,32 +48,39 @@ export function numbers(config: any) {
 	return data;
 }
 
-export function points(config: any) {
-	const xs = numbers(config);
-	const ys = numbers(config);
-	return xs.map((x: any, i) => ({ x, y: ys[i] }));
+interface Point {
+	x: number;
+	y: number | null;
+	r?: number;
 }
 
-export function bubbles(config: { rmin: any; rmax: any }) {
-	return points(config).map((pt: any) => {
+export function points(config: Record<string, unknown>): Point[] {
+	const xs = numbers(config);
+	const ys = numbers(config);
+	return xs.map((x: number | null, i: number) => ({ x: x as number, y: ys[i] }));
+}
+
+export function bubbles(
+	config: { rmin: number; rmax: number } & Record<string, unknown>,
+) {
+	return points(config).map((pt: Point) => {
 		pt.r = rand(config.rmin, config.rmax);
 		return pt;
 	});
 }
 
-export function labels(config: any) {
-	var cfg = config || {};
-	var min = cfg.min || 0;
-	var max = cfg.max || 100;
-	var count = cfg.count || 8;
-	var step = (max - min) / count;
-	var decimals = cfg.decimals || 8;
-	var dfactor = 10 ** decimals || 0;
-	var prefix = cfg.prefix || "";
-	var values = [];
-	var i;
+export function labels(config: Record<string, unknown>) {
+	const cfg = config || {};
+	const min = (cfg.min as number) || 0;
+	const max = (cfg.max as number) || 100;
+	const count = (cfg.count as number) || 8;
+	const step = (max - min) / count;
+	const decimals = (cfg.decimals as number) || 8;
+	const dfactor = 10 ** decimals || 0;
+	const prefix = (cfg.prefix as string) || "";
+	const values = [];
 
-	for (i = min; i < max; i += step) {
+	for (let i = min; i < max; i += step) {
 		values.push(prefix + Math.round(dfactor * i) / dfactor);
 	}
 
@@ -96,15 +102,14 @@ const MONTHS = [
 	"December",
 ];
 
-export function months(config: any) {
-	var cfg = config || {};
-	var count = cfg.count || 12;
-	var section = cfg.section;
-	var values = [];
-	var i, value;
+export function months(config: Record<string, unknown>) {
+	const cfg = config || {};
+	const count = (cfg.count as number) || 12;
+	const section = cfg.section as number | undefined;
+	const values = [];
 
-	for (i = 0; i < count; ++i) {
-		value = MONTHS[Math.ceil(i) % 12];
+	for (let i = 0; i < count; ++i) {
+		const value = MONTHS[Math.ceil(i) % 12];
 		values.push(value.substring(0, section));
 	}
 
@@ -159,11 +164,11 @@ export function namedColor(index: number) {
 	return NAMED_COLORS[index % NAMED_COLORS.length];
 }
 
-export function newDate(days: any) {
+export function newDate(days: number) {
 	return DateTime.now().plus({ days }).toJSDate();
 }
 
-export function newDateString(days: any) {
+export function newDateString(days: number) {
 	return DateTime.now().plus({ days }).toISO();
 }
 

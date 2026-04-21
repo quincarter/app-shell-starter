@@ -1,5 +1,5 @@
 /// <reference types="vitest" />
-import dns from "dns";
+import dns from "node:dns";
 import { defineConfig } from "vite";
 import compression from "vite-plugin-compression";
 import { VitePWA } from "vite-plugin-pwa";

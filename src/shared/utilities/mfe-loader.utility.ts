@@ -13,7 +13,7 @@ export interface MfeItem {
 export class MfeLoader {
 	public config: MfeItem[];
 
-	constructor(mfeConfig: any) {
+	constructor(mfeConfig: MfeItem[]) {
 		this.config = mfeConfig;
 	}
 

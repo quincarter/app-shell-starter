@@ -6,7 +6,7 @@ export interface NavItem {
 	directory: string;
 	filePath: string;
 	levelOfAccess: string[];
-	action?: () => {};
+	action?: () => void;
 	children?: NavItem[];
 	component: string;
 	tagName: string;
