@@ -1,3 +1,3 @@
-import { NoAccess } from './NoAccess';
+import { NoAccess } from "./NoAccess";
 
-customElements.define('no-access', NoAccess);
+customElements.define("no-access", NoAccess);

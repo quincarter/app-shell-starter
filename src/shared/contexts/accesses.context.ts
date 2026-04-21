@@ -1,3 +1,3 @@
-import { createContext } from '@lit/context';
+import { createContext } from "@lit/context";
 
-export const AccessesContext = createContext<string[]>('accessesContext');
+export const AccessesContext = createContext<string[]>("accessesContext");

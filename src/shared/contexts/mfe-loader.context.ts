@@ -1,4 +1,4 @@
-import { createContext } from '@lit/context';
-import { MfeLoader } from '../utilities/mfe-loader.utility';
+import { createContext } from "@lit/context";
+import type { MfeLoader } from "../utilities/mfe-loader.utility";
 
-export const MfeLoaderContext = createContext<MfeLoader>('mfeLoaderContext');
+export const MfeLoaderContext = createContext<MfeLoader>("mfeLoaderContext");

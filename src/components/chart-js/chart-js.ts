@@ -1,5 +1,5 @@
-import { ChartJsComponent } from './ChartJs';
+import { ChartJsComponent } from "./ChartJs";
 
-if (!customElements.get('base-chart')) {
-  customElements.define('base-chart', ChartJsComponent);
+if (!customElements.get("base-chart")) {
+	customElements.define("base-chart", ChartJsComponent);
 }
