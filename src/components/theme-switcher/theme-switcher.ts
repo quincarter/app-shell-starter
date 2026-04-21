@@ -1,3 +1,3 @@
-import { ThemeSwitcher } from './ThemeSwitcher';
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
-customElements.define('theme-switcher', ThemeSwitcher);
+customElements.define("theme-switcher", ThemeSwitcher);

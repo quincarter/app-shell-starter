@@ -1,15 +1,15 @@
-import { LitElement, css, html } from 'lit';
+import { css, html, LitElement } from "lit";
 
 export class UnderConstruction extends LitElement {
-  static styles = [
-    css`
+	static styles = [
+		css`
       :host {
         display: block;
       }
     `,
-  ];
+	];
 
-  render() {
-    return html`Under Construction!`;
-  }
+	render() {
+		return html`Under Construction!`;
+	}
 }

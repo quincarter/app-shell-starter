@@ -1,3 +1,3 @@
-import { UnderConstruction } from './UnderConstruction';
+import { UnderConstruction } from "./UnderConstruction";
 
-customElements.define('under-construction', UnderConstruction);
+customElements.define("under-construction", UnderConstruction);

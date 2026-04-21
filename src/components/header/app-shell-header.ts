@@ -1,3 +1,3 @@
-import { AppShellHeader } from './AppShellHeader';
+import { AppShellHeader } from "./AppShellHeader";
 
-customElements.define('app-shell-header', AppShellHeader);
+customElements.define("app-shell-header", AppShellHeader);

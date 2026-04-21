@@ -1,3 +1,3 @@
-import { PageNotFound } from './PageNotFound';
+import { PageNotFound } from "./PageNotFound";
 
-customElements.define('page-not-found', PageNotFound);
+customElements.define("page-not-found", PageNotFound);

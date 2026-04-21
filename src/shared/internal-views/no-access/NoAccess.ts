@@ -1,15 +1,15 @@
-import { LitElement, css, html } from 'lit';
+import { css, html, LitElement } from "lit";
 
 export class NoAccess extends LitElement {
-  static styles = [
-    css`
+	static styles = [
+		css`
       :host {
         display: block;
       }
     `,
-  ];
+	];
 
-  render() {
-    return html`No Access!`;
-  }
+	render() {
+		return html`No Access!`;
+	}
 }

@@ -1,4 +1,4 @@
 import { createContext } from "@lit/context";
-import { NavItem } from "../interfaces/navigation.interface";
+import type { NavItem } from "../interfaces/navigation.interface";
 
-export const NavigationContext = createContext<NavItem[]>('navContext');
+export const NavigationContext = createContext<NavItem[]>("navContext");

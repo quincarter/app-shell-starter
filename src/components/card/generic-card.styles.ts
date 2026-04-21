@@ -1,4 +1,4 @@
-import { css, CSSResultOrNative } from 'lit';
+import { type CSSResultOrNative, css } from "lit";
 
 export const GenericCardStyles: CSSResultOrNative = css`
   a {

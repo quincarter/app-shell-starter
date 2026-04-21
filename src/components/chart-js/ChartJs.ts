@@ -1,11 +1,16 @@
-import { Chart, ChartItem, ChartType } from 'chart.js/auto';
-import { html, HTMLTemplateResult, LitElement, PropertyValues } from 'lit';
-import { property, query, state } from 'lit/decorators.js';
+import { Chart, type ChartItem, type ChartType } from "chart.js/auto";
 import {
-  SAMPLE_BAR_DATA,
-  SAMPLE_DOUGHNUT_DATA,
-  SAMPLE_PIE_DATA,
-} from './chart-types.interface';
+	type HTMLTemplateResult,
+	html,
+	LitElement,
+	type PropertyValues,
+} from "lit";
+import { property, query, state } from "lit/decorators.js";
+import {
+	SAMPLE_BAR_DATA,
+	SAMPLE_DOUGHNUT_DATA,
+	SAMPLE_PIE_DATA,
+} from "./chart-types.interface";
 
 /**
  * This component will render a few different charts out of the box based on chart type. If importing this without renaming the custom element, you will use `<base-chart>`
@@ -26,55 +31,55 @@ import {
  * @element base-chart
  */
 export class ChartJsComponent extends LitElement {
-  /**
-   * This is the type based on the data in the chart-js typing.
-   * @attr chart-type
-   * @type {ChartType}
-   * @default undefined
-   */
-  @property({ type: String, attribute: 'chart-type' })
-  chartType: ChartType | undefined;
+	/**
+	 * This is the type based on the data in the chart-js typing.
+	 * @attr chart-type
+	 * @type {ChartType}
+	 * @default undefined
+	 */
+	@property({ type: String, attribute: "chart-type" })
+	chartType: ChartType | undefined;
 
-  /**
-   * This is the chart config based on the chart JS configuration options in their site and documentation. Currently supported types are bar, pie, and doughnut. More are coming.
-   * @attr chart-config
-   * @type {Object} The structure of this typing is polymorphic and changes based on the type of chart that you want to generate.
-   * @default undefined
-   */
-  @property({ type: Object, attribute: 'chart-config' })
-  config: any;
+	/**
+	 * This is the chart config based on the chart JS configuration options in their site and documentation. Currently supported types are bar, pie, and doughnut. More are coming.
+	 * @attr chart-config
+	 * @type {Object} The structure of this typing is polymorphic and changes based on the type of chart that you want to generate.
+	 * @default undefined
+	 */
+	@property({ type: Object, attribute: "chart-config" })
+	config: any;
 
-  @state()
-  chart: Chart | undefined;
+	@state()
+	chart: Chart | undefined;
 
-  @query('canvas')
-  canvasElement: HTMLCanvasElement | undefined;
+	@query("canvas")
+	canvasElement: HTMLCanvasElement | undefined;
 
-  protected firstUpdated(_changedProperties: PropertyValues): void {
-    const ctx = this.canvasElement?.getContext('2d') as ChartItem;
+	protected firstUpdated(_changedProperties: PropertyValues): void {
+		const ctx = this.canvasElement?.getContext("2d") as ChartItem;
 
-    let data = this.config;
+		let data = this.config;
 
-    if (!data) {
-      switch (this.chartType) {
-        case 'bar':
-          data = { ...SAMPLE_BAR_DATA };
-          break;
-        case 'pie':
-          data = { ...SAMPLE_PIE_DATA };
-          break;
-        case 'doughnut':
-          data = { ...SAMPLE_DOUGHNUT_DATA };
-          break;
-        default:
-          break;
-      }
-    }
+		if (!data) {
+			switch (this.chartType) {
+				case "bar":
+					data = { ...SAMPLE_BAR_DATA };
+					break;
+				case "pie":
+					data = { ...SAMPLE_PIE_DATA };
+					break;
+				case "doughnut":
+					data = { ...SAMPLE_DOUGHNUT_DATA };
+					break;
+				default:
+					break;
+			}
+		}
 
-    this.chart = new Chart(ctx, { ...data });
-  }
+		this.chart = new Chart(ctx, { ...data });
+	}
 
-  render(): HTMLTemplateResult {
-    return html`<canvas></canvas>`;
-  }
+	render(): HTMLTemplateResult {
+		return html`<canvas></canvas>`;
+	}
 }
