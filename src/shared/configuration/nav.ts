@@ -32,6 +32,16 @@ export const navigationRouting: NavItem[] = [
 		isMfe: false,
 	},
 	{
+		name: "Todos",
+		path: "/todos-page",
+		directory: "todos-page",
+		component: "todos-page",
+		filePath: "../../views/todos/todos-page.ts",
+		levelOfAccess: ["public"],
+		tagName: "todos-page",
+		isMfe: false,
+	},
+	{
 		name: "Charts",
 		path: "/chart-examples",
 		directory: "chart-examples",
