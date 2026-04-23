@@ -1,44 +1,43 @@
 import { html, LitElement } from "lit";
 import { property } from "lit/decorators.js";
+import { removeTodo, toggleTodo } from "../../../shared/stores/todo.store";
+import { removeIdFromOrder } from "../../../shared/stores/todo-list.store";
 import { TodoItemStyles } from "./todo-item.styles";
 
 export class TodoItem extends LitElement {
-	/**
-	 * The title of the todo
-	 * @attr item-title
-	 * @type String
-	 */
+	@property({ type: String })
+	id = "";
+
 	@property({ type: String, attribute: "item-title" })
 	title = "";
 
-	/**
-	 * Optional description
-	 * @attr item-description
-	 * @type String
-	 */
 	@property({ type: String, attribute: "item-description" })
 	description = "";
 
-	/**
-	 * This is the state of the todo item in the list.
-	 * @attr is-checked
-	 * @type Boolean
-	 * @default false
-	 */
 	@property({ type: Boolean, attribute: "is-checked" })
 	isChecked = false;
 
 	static styles = [TodoItemStyles];
 
 	onChecked() {
-		// update signal stores
+		toggleTodo(this.id);
+	}
+
+	onDelete() {
+		removeTodo(this.id);
+		removeIdFromOrder(this.id);
 	}
 
 	render() {
 		return html`
-        <div class="todo-item">
-        <input type="checkbox" name="todoItem" checked/>
-        </div>
-        `;
+			<div class="todo-item ${this.isChecked ? "checked" : ""}">
+				<input type="checkbox" .checked="${this.isChecked}" @change="${this.onChecked}" />
+				<div class="content">
+					<span class="title">${this.title}</span>
+					${this.description ? html`<span class="description">${this.description}</span>` : ""}
+				</div>
+				<button @click="${this.onDelete}">Delete</button>
+			</div>
+		`;
 	}
 }

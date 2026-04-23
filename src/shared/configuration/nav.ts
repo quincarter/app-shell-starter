@@ -36,7 +36,7 @@ export const navigationRouting: NavItem[] = [
 		path: "/todos-page",
 		directory: "todos-page",
 		component: "todos-page",
-		filePath: "../../views/todos/todos-page.ts",
+		filePath: "../../views/todos-page/todos-page.ts",
 		levelOfAccess: ["public"],
 		tagName: "todos-page",
 		isMfe: false,

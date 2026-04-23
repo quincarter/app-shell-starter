@@ -21,6 +21,7 @@ import "./components/card/generic-card";
 import "./components/chart-js/chart-js";
 import { AppRootUtilities } from "./shared/utilities/app-root.utility";
 import { MfeLoader } from "./shared/utilities/mfe-loader.utility";
+import "./components/todos/todo-list/todo-list";
 
 /**
  * An example element.

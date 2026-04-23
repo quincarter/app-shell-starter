@@ -4,7 +4,7 @@ import { ViewMixin } from "../view.mixin";
 import { TodosPageStyles } from "./todos-page.styles";
 
 @customElement("todos-page")
-export class CardExamples extends ViewMixin(LitElement) {
+export class TodosPage extends ViewMixin(LitElement) {
 	featureIsEnabled = false;
 	isMfe = false;
 
@@ -13,7 +13,7 @@ export class CardExamples extends ViewMixin(LitElement) {
 	render(): HTMLTemplateResult {
 		return this.renderMfe(
 			html`isMfe = ${this.isMfe}
-      <div>Todos Page</div>
+      			<todo-list></todo-list>
       `,
 		);
 	}
