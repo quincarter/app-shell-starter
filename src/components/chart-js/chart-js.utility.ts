@@ -57,7 +57,10 @@ interface Point {
 export function points(config: Record<string, unknown>): Point[] {
 	const xs = numbers(config);
 	const ys = numbers(config);
-	return xs.map((x: number | null, i: number) => ({ x: x as number, y: ys[i] }));
+	return xs.map((x: number | null, i: number) => ({
+		x: x as number,
+		y: ys[i],
+	}));
 }
 
 export function bubbles(

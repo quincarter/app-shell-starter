@@ -4,7 +4,7 @@ This project uses concepts to bring a lit project together as a starter shell. T
 
 ## Key concepts
 * Lit Element
-* Vaadin Router
+* Lit Labs Router
 * Lit Context
 * Lit Tasks
 
